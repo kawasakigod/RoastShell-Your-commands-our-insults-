@@ -1,3 +1,4 @@
+
 tholvi_terminal.sh
 This is the code
 cat << 'EOF' > ~/useless-terminal/.uselessrc
