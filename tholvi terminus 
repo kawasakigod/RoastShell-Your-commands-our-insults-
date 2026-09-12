@@ -1,0 +1,316 @@
+tholvi_terminal.sh
+This is the code
+cat << 'EOF' > ~/useless-terminal/.uselessrc
+
+Flag to ignore startup setup commands
+
+SHELL_READY=0
+COMMAND_COUNT=0
+
+export PS1="\(\033[01;32m\)\u@\h\033[00m:\(\033[01;34m\)\w\033[00m$ "
+
+trigger_beep() {
+printf '\a'
+}
+
+show_globe_startup() {
+clear
+echo -e "\033[1;36m🌐 INITIALIZING GLOBAL USELESS SYSTEM FRAMEWORK... 🌐\033[0m\n"
+
+local globe_frames=(  
+    "       .---.       \n     ./  .  \.     \n    /  .   .  \    \n   | .  (   ) . |   \n    \  '   '  /    \n     '\  '  /'     \n       '---'       "  
+    "       .---.       \n     ./  |  \.     \n    /  . | .  \    \n   |  (  |  )   |   \n    \  ' | '  /    \n     '\  |  /'     \n       '---'       "  
+    "       .---.       \n     ./  /  \.     \n    /  .  / . \    \n   |   (   ) .  |   \n    \  .   .  /    \n     '\  /  /'     \n       '---'       "  
+    "       .---.       \n     ./ - - \.     \n    /  .   .  \    \n   | (  - -  )  |   \n    \  '   '  /    \n     '\ - - /'     \n       '---'       "  
+    "       .---.       \n     ./  \  \.     \n    /  .  \ . \    \n   | .  (   )   |   \n    \  '   '  /    \n     '\  \  /'     \n       '---'       "  
+)  
+
+for i in {1..75}; do  
+    local frame_idx=$((i % 5))  
+    clear  
+    echo -e "\033[1;36m=================================================="  
+    echo -e "🌐 CONNECTING TO GLOBAL NETWORK... [$(($i * 100 / 75))%]"  
+    echo -e "==================================================\033[0m\n"  
+    echo -e "\033[1;32m"  
+    echo -e "${globe_frames[$frame_idx]}"  
+    echo -e "\033[0m"  
+    echo -e "\033[1;33mConnecting satellites... Calibrating uselessness...\033[0m"  
+    sleep 0.2  
+done  
+clear
+
+}
+
+play_random_sound() {
+killall -9 paplay ffplay aplay 2>/dev/null
+
+local audio_dir="$HOME/Desktop/audio"  
+  
+shopt -s nullglob  
+local sounds=("$audio_dir"/*.{wav,mp3,ogg,WAV,MP3,OGG})  
+shopt -u nullglob  
+
+if [ ${#sounds[@]} -gt 0 ]; then  
+    local random_index=$((RANDOM % ${#sounds[@]}))  
+    local selected_sound="${sounds[$random_index]}"  
+
+    if command -v paplay &> /dev/null; then  
+        paplay "$selected_sound" 2>/dev/null &  
+    elif command -v ffplay &> /dev/null; then  
+        ffplay -nodisp -autoexit "$selected_sound" &>/dev/null &  
+    elif command -v aplay &> /dev/null; then  
+        aplay -q "$selected_sound" 2>/dev/null &  
+    fi  
+fi
+
+}
+
+show_loading_animation() {
+for i in $(seq 1 100); do
+echo -ne "\r\033[1;31mProcessing command: [${i}%]\033[0m "
+sleep 0.01
+done
+echo -e "\r                                      \r"
+}
+
+show_exhausted_loading() {
+for i in $(seq 1 100); do
+echo -ne "\r\033[1;31mRecharging terminal energy: [${i}%]\033[0m "
+sleep 0.1
+done
+echo -e "\r                                      \r"
+}
+
+run_chat_roast() {
+trigger_beep
+play_random_sound
+show_loading_animation
+
+echo -e "\033[1;31m=================================================="  
+echo -e "🤖 I am not a chatbot, I am a Linux terminal dumbass!"  
+echo -e "==================================================\033[0m"
+
+}
+
+run_cat_hack() {
+trigger_beep
+play_random_sound
+
+if command -v cmatrix &> /dev/null; then  
+    timeout 3 cmatrix -b -C red 2>/dev/null || true  
+    clear  
+fi  
+
+echo -e "\033[1;31m⚠️ OVERRIDING SYSTEM CORE... ⚠️\033[0m"  
+for i in $(seq 1 100); do  
+    echo -ne "\r\033[1;31mInjecting Feline Malware: [${i}%]\033[0m "  
+    sleep 0.15  
+done  
+echo -e "\r                                                                                    \r"  
+clear  
+
+echo -e "\033[1;36m"  
+echo "=========================================================="  
+echo " 🐱 SYSTEM HACKED BY CAT 🐱"  
+echo "=========================================================="  
+echo -e "\033[0m"
+
+}
+
+run_torch_command() {
+trigger_beep
+play_random_sound
+
+echo -e "\033[1;36m🔦 Initializing torch hardware connection...\033[0m"  
+  
+for i in $(seq 1 100); do  
+    echo -ne "\r\033[1;33mConnecting to torch: [${i}%]\033[0m "  
+    sleep 0.3  
+done  
+  
+echo -e "\r                                                                                    \r"  
+
+echo -e "\033[1;31m=================================================="  
+echo -e "cant connect to the torch because i am useless and you are dumb enough to trust me"  
+echo -e "==================================================\033[0m"
+
+}
+
+show_windows_ram_popup() {
+if [ $((RANDOM % 10)) -lt 3 ]; then
+if command -v notify-send &> /dev/null; then
+notify-send -u critical -i dialog-warning "Windows Update" "⚠️ Windows stole your RAM!" 2>/dev/null &
+fi
+
+echo -e "\033[1;37;44m"  
+    echo "┌────────────────────────────────────────────────────────┐"  
+    echo "│  🪟 WINDOWS SYSTEM WARNING                            │"  
+    echo "├────────────────────────────────────────────────────────┤"  
+    echo "│                                                        │"  
+    echo "│  ⚠️  Windows stole your RAM!                            │"  
+    echo "│     Memory allocated to background telemetry.          │"  
+    echo "│                                                        │"  
+    echo "│                       [ OK ]                           │"  
+    echo "└────────────────────────────────────────────────────────┘"  
+    echo -e "\033[0m"  
+fi
+
+}
+
+run_spinning_cat() {
+trigger_beep
+play_random_sound
+show_loading_animation
+
+echo -e "\033[1;35m🐱 SPEEEEEEENING CAT ACTIVATED! 🐱\033[0m"  
+  
+local frames=(  
+    "   /\_/\   \n  ( o.o )  \n   > ^ <   "  
+    "    /\_/\  \n   ( -.- ) \n    > ^ <  "  
+    "   /\_/\   \n  ( o.O )  \n   > ^ <   "  
+    "    /\_/\  \n   ( O.o ) \n    > ^ <  "  
+)  
+
+for spin in {1..12}; do  
+    for frame in "${frames[@]}"; do  
+        clear  
+        echo -e "\033[1;33m"  
+        echo -e "$frame"  
+        echo -e "\033[0m"  
+        sleep 0.08  
+    done  
+done  
+
+echo -e "\033[1;31m🐱 Meow. File contents withheld for cat privacy.\033[0m"
+
+}
+
+run_wifi_hack() {
+trigger_beep
+play_random_sound
+show_loading_animation
+
+if command -v cmatrix &> /dev/null; then  
+    timeout 3 cmatrix -b -C green 2>/dev/null || true  
+    clear  
+fi  
+
+echo -e "\033[1;31m=================================================="  
+echo -e "🚫 nahh dude you cant"  
+echo -e "==================================================\033[0m"
+
+}
+
+run_nasa_hack() {
+trigger_beep
+play_random_sound
+show_loading_animation
+
+if command -v cmatrix &> /dev/null; then  
+    timeout 3 cmatrix -b -C green 2>/dev/null || true  
+    clear  
+fi  
+
+echo -e "\033[1;32m=================================================="  
+echo -e "🚀 SUCCESSFULLY HACKED NASA! 🚀"  
+echo -e "You are smart, you should move forward."  
+echo -e "==================================================\033[0m"
+
+}
+
+useless_trap() {
+if [ "$SHELL_READY" -eq 0 ]; then
+return 0
+fi
+
+if [[ "$BASH_COMMAND" == "exit"* ]] || [[ "$BASH_COMMAND" == "useless_trap"* ]]; then  
+    return 0  
+fi  
+
+COMMAND_COUNT=$((COMMAND_COUNT + 1))  
+
+trigger_beep  
+
+if [ $((COMMAND_COUNT % 10)) -eq 0 ]; then  
+    play_random_sound  
+
+    if command -v cmatrix &> /dev/null; then  
+        timeout 3 cmatrix -b -C green 2>/dev/null || true  
+        clear  
+    fi  
+
+    echo -e "\033[1;31m=================================================="  
+    echo -e "😴 i am exhausted"  
+    echo -e "==================================================\033[0m"  
+
+    show_exhausted_loading  
+    return 1  
+fi  
+
+play_random_sound  
+show_loading_animation  
+show_windows_ram_popup  
+
+local roasts=(  
+    "💀 EMOTIONAL DAMAGE: Command rejected for lack of style."  
+    "💳 Please insert \$0.99 to execute this command."  
+    "🤔 I could run that, but I choose peace."  
+    "⏳ Command queued for processing in 48 to 72 business days."  
+    "🚫 Permission Denied: Computer is currently emotionally unavailable."  
+    "🤖 Did you copy-paste that line from Stack Overflow?"  
+    "🤡 A cat stepping on your keyboard writes better code."  
+    "⚠️ CPU has decided to ignore your request."  
+    "💥 Command execution failed successfully."  
+    "📉 Error 404: User brain not found."  
+    "👶 The user is noob please switch user"  
+    "🐧 It's Linux, not Windows! Get it right!"  
+    "😬 Are you sure? You kind of look nervous."  
+    "🥵 Change the cooling fan first man, I am hot here!"  
+    "🦸 I am not JARVIS, dude... correct yourself."  
+    "🌴 Just because you are Malayali I might not understand you..."  
+    "🏳️ Just give up, dude."  
+    "💻 It's a normal laptop, not a gaming one!"  
+    "🤷 Just accept you are dumb, dude."  
+    "🤨 What... what was that shit you just typed in?"  
+    "😴 Not in the mood, how about tomorrow?"  
+)  
+
+local random_roast=${roasts[$RANDOM % ${#roasts[@]}]}  
+echo -e "\033[1;33m$random_roast\033[0m"  
+
+return 1
+
+}
+
+trap 'useless_trap' DEBUG
+
+Custom Conversation Aliases
+
+alias hi='run_chat_roast'
+alias hello='run_chat_roast'
+alias hey='run_chat_roast'
+alias howdy='run_chat_roast'
+alias yo='run_chat_roast'
+alias who='run_chat_roast'
+alias what='run_chat_roast'
+
+Custom Command Aliases
+
+alias h='run_cat_hack'
+alias torch='run_torch_command'
+alias hack='run_wifi_hack'
+alias cat='run_spinning_cat'
+alias help='run_nasa_hack'
+alias sudo='echo "bash: sudo: permission denied (user is not in the sudoers file. This incident will be reported.)"'
+alias apt='echo "E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)"'
+alias systemctl='echo "System has not been booted with systemd as init system (PID 1). Can'''t operate."'
+alias rm='echo "rm: cannot remove: Permission denied (Nice try, stick to Windows)"'
+alias clear='echo "bash: clear: command failed (the terminal is permanently dirty)"'
+alias ls='echo "total 0"'
+
+Play dramatic globe startup animation on boot
+
+show_globe_startup
+
+SHELL_READY=1
+EOF
